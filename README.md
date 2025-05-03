@@ -19,8 +19,6 @@ Orchestra ofrece un conjunto completo de herramientas para construir sistemas mu
 
 ## 🔍 Diagrama del Sistema
 
-![Arquitectura del Sistema](https://raw.githubusercontent.com/holasoymalva/orchestra/main/docs/images/architecture.png)
-
 ## 🚀 Instalación
 
 ### Requisitos
