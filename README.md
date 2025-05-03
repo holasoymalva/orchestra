@@ -17,18 +17,45 @@ Orchestra ofrece un conjunto completo de herramientas para construir sistemas mu
 - **📦 Exportación/Importación**: Guarda y carga configuraciones del sistema.
 - **🔄 Procesamiento Asíncrono**: Maneja tareas en paralelo con procesamiento asíncrono.
 
-## 🔍 Diagrama del Sistema
+## 🔍 Arquitectura del Sistema
+
+La arquitectura de Orchestra se basa en componentes modulares que interactúan entre sí:
+
+1. **MultiAgentOrchestrator**: El núcleo central que gestiona todo el sistema.
+2. **Agentes**: Entidades autónomas con roles y capacidades específicas.
+3. **Sistema de Mensajería**: Facilita la comunicación estructurada entre agentes.
+4. **Visualizador**: Herramientas para visualizar el flujo de información y estadísticas.
+5. **Exportadores**: Mecanismos para exportar el sistema en diferentes formatos.
 
 ## 🚀 Instalación
 
-### Requisitos
+### Configuración Rápida
 
-- Python 3.8 o superior
-- pip (administrador de paquetes de Python)
+La forma más sencilla de empezar es usando los scripts de configuración automática:
 
-### Configuración del Entorno Virtual
+**En Linux/Mac:**
+```bash
+# Dar permisos de ejecución al script
+chmod +x setup_venv.sh
 
-La forma recomendada de instalar Orchestra es usando un entorno virtual:
+# Ejecutar el script
+./setup_venv.sh
+```
+
+**En Windows:**
+```batch
+setup_venv.bat
+```
+
+Estos scripts:
+- Crean un entorno virtual
+- Instalan todas las dependencias
+- Configuran el paquete en modo desarrollo
+- Verifican la instalación
+
+### Configuración Manual
+
+Si prefieres configurar manualmente:
 
 ```bash
 # Clonar el repositorio
@@ -46,6 +73,9 @@ source venv/bin/activate
 
 # Instalar las dependencias
 pip install -r requirements.txt
+
+# Instalar el paquete en modo desarrollo
+pip install -e .
 ```
 
 ### Instalación Directa desde PyPI
@@ -67,6 +97,8 @@ matplotlib>=3.5.1
 fastapi>=0.85.0
 uvicorn>=0.18.3
 pydantic>=1.9.0
+python-dateutil>=2.8.2
+typing-extensions>=4.0.0
 ```
 
 ## 🎮 Uso Básico
@@ -205,35 +237,63 @@ print(stats)
 
 ```
 orchestra/
-├── __init__.py
-├── agents/
-│   ├── __init__.py
-│   ├── base.py              # Interfaces y clases base para agentes
-│   ├── functional.py        # Implementación de agentes funcionales
-│   └── specialized/         # Agentes especializados
-├── messaging/
-│   ├── __init__.py
-│   ├── message.py           # Definición de mensajes y tipos
-│   └── queue.py             # Implementación de colas de mensajes
-├── orchestrator/
-│   ├── __init__.py
-│   └── core.py              # Implementación principal del orchestrator
-├── visualization/
-│   ├── __init__.py
-│   └── visualizer.py        # Herramientas de visualización
-└── exporters/
-    ├── __init__.py
-    ├── api.py               # Exportador de API
-    └── json.py              # Exportación/importación en formato JSON
+├── README.md                     # Documentación principal
+├── requirements.txt              # Dependencias del proyecto
+├── setup.py                      # Script de instalación
+├── setup_venv.sh                 # Script para Linux/Mac
+├── setup_venv.bat                # Script para Windows
+├── orchestra/                    # Paquete principal
+│   ├── __init__.py               # Exporta las clases principales
+│   ├── agents/                   # Módulo de agentes
+│   │   ├── __init__.py           # Exporta las clases de agentes
+│   │   ├── base.py               # Definición de la interfaz de agente
+│   │   └── functional.py         # Implementación de agentes funcionales
+│   ├── messaging/                # Módulo de mensajería
+│   │   ├── __init__.py           # Exporta las clases de mensajería
+│   │   └── message.py            # Definición de mensajes
+│   ├── orchestrator/             # Módulo del orchestrator
+│   │   ├── __init__.py           # Exporta la clase del orchestrator
+│   │   └── core.py               # Implementación del orchestrator
+│   ├── visualization/            # Módulo de visualización
+│   │   ├── __init__.py           # Exporta las clases de visualización
+│   │   └── visualizer.py         # Implementación del visualizador
+│   └── exporters/                # Módulo de exportadores
+│       ├── __init__.py           # Exporta los exportadores
+│       └── api.py                # Exportador de API REST
+└── examples/                     # Ejemplos de uso
+    ├── simple_system.py          # Ejemplo básico del sistema
+    └── api_server.py             # Ejemplo de servidor API
 ```
 
-## 📝 Ejemplos
+## 📝 Ejemplos Incluidos
 
-Explora ejemplos más detallados en el directorio `/examples`:
+Orchestra incluye ejemplos prácticos para ayudarte a comenzar:
 
-- **Sistema de Procesamiento de Datos**: Implementación de un flujo de recolección y análisis.
-- **Chatbot Multi-Agente**: Sistema conversacional con agentes especializados.
-- **Sistema de Recomendaciones**: Agentes colaborativos para generar recomendaciones.
+### 1. Sistema Simple (`examples/simple_system.py`)
+
+Este ejemplo crea un sistema básico con tres agentes: coordinador, procesador y validador. Demuestra cómo los mensajes fluyen a través del sistema y cómo los agentes procesan diferentes tipos de datos.
+
+```bash
+python examples/simple_system.py
+```
+
+### 2. Servidor API (`examples/api_server.py`)
+
+Este ejemplo muestra cómo exportar un sistema multi-agente como un servidor API REST con endpoints para gestionar agentes y enviar mensajes.
+
+```bash
+python examples/api_server.py
+```
+
+## 💡 Casos de Uso
+
+Orchestra es ideal para diversos escenarios:
+
+- **Procesamiento de Datos Distribuido**: Dividir tareas complejas entre agentes especializados.
+- **Sistemas de Chatbots Avanzados**: Crear chatbots con múltiples "personalidades" o funciones.
+- **Simulaciones Multi-Agente**: Modelar interacciones complejas entre entidades.
+- **Flujos de Trabajo Automatizados**: Automatizar procesos de negocio con agentes especializados.
+- **Sistemas de Recomendación**: Implementar componentes especializados que colaboran para generar recomendaciones.
 
 ## 🤝 Contribuir
 
