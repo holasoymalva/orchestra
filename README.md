@@ -2,8 +2,6 @@
 
 Orchestra es un framework de Python diseñado para crear, gestionar y orquestar sistemas multi-agente donde diversos agentes de IA colaboran para resolver tareas complejas.
 
-![Orchestra Banner](https://raw.githubusercontent.com/holasoymalva/orchestra/main/docs/images/banner.png)
-
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![GitHub License](https://img.shields.io/github/license/holasoymalva/orchestra)](https://github.com/holasoymalva/orchestra/blob/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/holasoymalva/orchestra/pulls)
