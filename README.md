@@ -83,7 +83,7 @@ pip install -e .
 Alternativamente, puedes instalar Orchestra directamente desde PyPI:
 
 ```bash
-pip install multi-agent-orchestra
+pip install orchestra
 ```
 
 ## 📋 Requisitos
