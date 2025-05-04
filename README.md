@@ -1,94 +1,97 @@
 # 🎭 Orchestra - Multi-Agent Orchestrator
 
-Orchestra es un framework de Python diseñado para crear, gestionar y orquestar sistemas multi-agente donde diversos agentes de IA colaboran para resolver tareas complejas.
+Orchestra is a Python framework designed to create, manage, and orchestrate multi-agent systems where various AI agents collaborate to solve complex tasks.
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![GitHub License](https://img.shields.io/github/license/holasoymalva/orchestra)](https://github.com/holasoymalva/orchestra/blob/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/holasoymalva/orchestra/pulls)
 
-## 🌟 Características
+## 🌟 Features
 
-Orchestra ofrece un conjunto completo de herramientas para construir sistemas multi-agente sofisticados:
+Orchestra provides a comprehensive set of tools for building sophisticated multi-agent systems:
 
-- **👤 Roles y Capacidades Personalizadas**: Define distintos roles y capacidades para cada agente.
-- **💬 Comunicación Inter-Agente**: Configura protocolos robustos de comunicación entre agentes.
-- **📊 Visualización del Flujo**: Visualiza el flujo de información y la toma de decisiones.
-- **🔌 API REST Integrada**: Expone tu sistema como un servicio API REST.
-- **📦 Exportación/Importación**: Guarda y carga configuraciones del sistema.
-- **🔄 Procesamiento Asíncrono**: Maneja tareas en paralelo con procesamiento asíncrono.
+* **👤 Custom Roles and Capabilities**: Define different roles and capabilities for each agent.
+* **💬 Inter-Agent Communication**: Set up robust communication protocols between agents.
+* **📊 Flow Visualization**: Visualize information flow and decision-making.
+* **🔌 Integrated REST API**: Expose your system as a REST API service.
+* **📦 Export/Import**: Save and load system configurations.
+* **🔄 Asynchronous Processing**: Handle tasks in parallel with asynchronous processing.
 
-## 🔍 Arquitectura del Sistema
+## 🔍 System Architecture
 
-La arquitectura de Orchestra se basa en componentes modulares que interactúan entre sí:
+Orchestra’s architecture is based on modular components that interact with each other:
 
-1. **MultiAgentOrchestrator**: El núcleo central que gestiona todo el sistema.
-2. **Agentes**: Entidades autónomas con roles y capacidades específicas.
-3. **Sistema de Mensajería**: Facilita la comunicación estructurada entre agentes.
-4. **Visualizador**: Herramientas para visualizar el flujo de información y estadísticas.
-5. **Exportadores**: Mecanismos para exportar el sistema en diferentes formatos.
+1. **MultiAgentOrchestrator**: The central core that manages the entire system.
+2. **Agents**: Autonomous entities with specific roles and capabilities.
+3. **Messaging System**: Facilitates structured communication between agents.
+4. **Visualizer**: Tools to visualize the flow of information and statistics.
+5. **Exporters**: Mechanisms to export the system in different formats.
 
-## 🚀 Instalación
+## 🚀 Installation
 
-### Configuración Rápida
+### Quick Setup
 
-La forma más sencilla de empezar es usando los scripts de configuración automática:
+The easiest way to get started is by using the automatic setup scripts:
 
-**En Linux/Mac:**
+**On Linux/Mac:**
+
 ```bash
-# Dar permisos de ejecución al script
+# Grant execution permissions to the script
 chmod +x setup_venv.sh
 
-# Ejecutar el script
+# Run the script
 ./setup_venv.sh
 ```
 
-**En Windows:**
+**On Windows:**
+
 ```batch
 setup_venv.bat
 ```
 
-Estos scripts:
-- Crean un entorno virtual
-- Instalan todas las dependencias
-- Configuran el paquete en modo desarrollo
-- Verifican la instalación
+These scripts:
 
-### Configuración Manual
+* Create a virtual environment
+* Install all dependencies
+* Set up the package in development mode
+* Verify the installation
 
-Si prefieres configurar manualmente:
+### Manual Setup
+
+If you prefer manual setup:
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/holasoymalva/orchestra.git
 cd orchestra
 
-# Crear el entorno virtual
+# Create the virtual environment
 python -m venv venv
 
-# Activar el entorno virtual
-# En Windows:
+# Activate the virtual environment
+# On Windows:
 venv\Scripts\activate
-# En macOS/Linux:
+# On macOS/Linux:
 source venv/bin/activate
 
-# Instalar las dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Instalar el paquete en modo desarrollo
+# Install the package in development mode
 pip install -e .
 ```
 
-### Instalación Directa desde PyPI
+### Install Directly from PyPI
 
-Alternativamente, puedes instalar Orchestra directamente desde PyPI:
+Alternatively, you can install Orchestra directly from PyPI:
 
 ```bash
 pip install orchestra
 ```
 
-## 📋 Requisitos
+## 📋 Requirements
 
-Las dependencias principales se encuentran en el archivo `requirements.txt`:
+The main dependencies are listed in the `requirements.txt` file:
 
 ```
 asyncio>=3.4.3
@@ -101,225 +104,225 @@ python-dateutil>=2.8.2
 typing-extensions>=4.0.0
 ```
 
-## 🎮 Uso Básico
+## 🎮 Basic Usage
 
-A continuación se muestra un ejemplo básico de cómo crear un sistema multi-agente:
+Here’s a basic example of how to create a multi-agent system:
 
 ```python
 import asyncio
 from orchestra import MultiAgentOrchestrator, FunctionalAgent, Message, MessageType
 
-# Crear el orchestrator
-orchestrator = MultiAgentOrchestrator(name="Sistema de Análisis de Datos")
+# Create the orchestrator
+orchestrator = MultiAgentOrchestrator(name="Data Analysis System")
 
-# Definir funciones de procesamiento para los agentes
+# Define processing functions for the agents
 async def data_collector_process(message):
-    # Simular recolección de datos
-    data = {"temperatura": 22.5, "humedad": 60, "presión": 1013}
+    # Simulate data collection
+    data = {"temperature": 22.5, "humidity": 60, "pressure": 1013}
     return Message(
-        sender_id="recolector",
-        receiver_id="analizador",
+        sender_id="collector",
+        receiver_id="analyzer",
         content=data,
         msg_type=MessageType.INFO
     )
 
 async def data_analyzer_process(message):
-    # Analizar los datos recibidos
+    # Analyze the received data
     data = message.content
-    analysis = {"promedio": sum(data.values()) / len(data), "estado": "normal"}
+    analysis = {"average": sum(data.values()) / len(data), "status": "normal"}
     return Message(
-        sender_id="analizador",
-        receiver_id="reportero",
+        sender_id="analyzer",
+        receiver_id="reporter",
         content=analysis,
         msg_type=MessageType.INFO
     )
 
 async def report_generator_process(message):
-    # Generar un reporte
+    # Generate a report
     analysis = message.content
-    report = f"Reporte: Valores promedio de {analysis['promedio']:.2f}, estado {analysis['estado']}"
+    report = f"Report: Average value {analysis['average']:.2f}, status {analysis['status']}"
     print(report)
     return None
 
-# Crear los agentes
-recolector = FunctionalAgent(
-    name="Recolector de Datos",
+# Create the agents
+collector = FunctionalAgent(
+    name="Data Collector",
     role="data_collection",
     process_func=data_collector_process,
     capabilities=["sensing", "data_gathering"]
 )
 
-analizador = FunctionalAgent(
-    name="Analizador",
+analyzer = FunctionalAgent(
+    name="Analyzer",
     role="data_analysis",
     process_func=data_analyzer_process,
     capabilities=["statistics", "pattern_recognition"]
 )
 
-reportero = FunctionalAgent(
-    name="Generador de Reportes",
+reporter = FunctionalAgent(
+    name="Report Generator",
     role="reporting",
     process_func=report_generator_process,
     capabilities=["formatting", "visualization"]
 )
 
-# Configurar IDs personalizados
-recolector.id = "recolector"
-analizador.id = "analizador"
-reportero.id = "reportero"
+# Set custom IDs
+collector.id = "collector"
+analyzer.id = "analyzer"
+reporter.id = "reporter"
 
-# Agregar los agentes al orchestrator
-orchestrator.add_agent(recolector)
-orchestrator.add_agent(analizador)
-orchestrator.add_agent(reportero)
+# Add the agents to the orchestrator
+orchestrator.add_agent(collector)
+orchestrator.add_agent(analyzer)
+orchestrator.add_agent(reporter)
 
-# Función principal asíncrona
+# Main asynchronous function
 async def main():
-    # Iniciar el orchestrator
+    # Start the orchestrator
     await orchestrator.start()
-    
-    # Enviar un mensaje para iniciar el flujo
-    inicio_message = Message(
+
+    # Send a message to start the flow
+    start_message = Message(
         sender_id="system",
-        receiver_id="recolector",
-        content="Iniciar recolección",
+        receiver_id="collector",
+        content="Start collection",
         msg_type=MessageType.COMMAND
     )
-    await orchestrator.send_message(inicio_message)
-    
-    # Esperar a que se procesen los mensajes
+    await orchestrator.send_message(start_message)
+
+    # Wait for the messages to be processed
     await asyncio.sleep(2)
-    
-    # Visualizar el sistema
-    orchestrator.visualize(save_path="flujo_sistema.png")
-    
-    # Detener el orchestrator
+
+    # Visualize the system
+    orchestrator.visualize(save_path="system_flow.png")
+
+    # Stop the orchestrator
     await orchestrator.stop()
 
-# Ejecutar el flujo
+# Run the flow
 if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🖥️ Exportación como API
+## 🖥️ Exporting as an API
 
-Orchestra permite exportar fácilmente tu sistema multi-agente como una API REST:
+Orchestra allows you to easily export your multi-agent system as a REST API:
 
 ```python
 from orchestra import ApiExporter
 
-# Crear el orchestrator y configurar agentes (como en el ejemplo anterior)
+# Create the orchestrator and set up agents (as in the example above)
 # ...
 
-# Exportar como API
+# Export as API
 api_exporter = ApiExporter(orchestrator)
 
-# Iniciar el servidor (por defecto en http://localhost:8000)
+# Start the server (default at http://localhost:8000)
 api_exporter.run()
 ```
 
-Una vez iniciado, puedes acceder a la documentación de la API en `http://localhost:8000/docs`.
+Once started, you can access the API documentation at `http://localhost:8000/docs`.
 
-## 📊 Visualización
+## 📊 Visualization
 
-Orchestra proporciona herramientas integradas para visualizar el flujo de información:
+Orchestra provides built-in tools to visualize the flow of information:
 
 ```python
-# Generar una visualización del sistema
-orchestrator.visualize(figsize=(12, 8), save_path="mi_sistema.png")
+# Generate a visualization of the system
+orchestrator.visualize(figsize=(12, 8), save_path="my_system.png")
 
-# Obtener estadísticas del flujo de mensajes
+# Get message flow statistics
 stats = orchestrator.visualizer.get_message_flow_stats()
 print(stats)
 ```
 
-## 🧩 Estructura del Proyecto
+## 🧩 Project Structure
 
 ```
 orchestra/
-├── README.md                     # Documentación principal
-├── requirements.txt              # Dependencias del proyecto
-├── setup.py                      # Script de instalación
-├── setup_venv.sh                 # Script para Linux/Mac
-├── setup_venv.bat                # Script para Windows
-├── orchestra/                    # Paquete principal
-│   ├── __init__.py               # Exporta las clases principales
-│   ├── agents/                   # Módulo de agentes
-│   │   ├── __init__.py           # Exporta las clases de agentes
-│   │   ├── base.py               # Definición de la interfaz de agente
-│   │   └── functional.py         # Implementación de agentes funcionales
-│   ├── messaging/                # Módulo de mensajería
-│   │   ├── __init__.py           # Exporta las clases de mensajería
-│   │   └── message.py            # Definición de mensajes
-│   ├── orchestrator/             # Módulo del orchestrator
-│   │   ├── __init__.py           # Exporta la clase del orchestrator
-│   │   └── core.py               # Implementación del orchestrator
-│   ├── visualization/            # Módulo de visualización
-│   │   ├── __init__.py           # Exporta las clases de visualización
-│   │   └── visualizer.py         # Implementación del visualizador
-│   └── exporters/                # Módulo de exportadores
-│       ├── __init__.py           # Exporta los exportadores
-│       └── api.py                # Exportador de API REST
-└── examples/                     # Ejemplos de uso
-    ├── simple_system.py          # Ejemplo básico del sistema
-    └── api_server.py             # Ejemplo de servidor API
+├── README.md                     # Main documentation
+├── requirements.txt              # Project dependencies
+├── setup.py                      # Installation script
+├── setup_venv.sh                 # Script for Linux/Mac
+├── setup_venv.bat                # Script for Windows
+├── orchestra/                    # Main package
+│   ├── __init__.py               # Exports main classes
+│   ├── agents/                   # Agents module
+│   │   ├── __init__.py
+│   │   ├── base.py               # Agent interface definition
+│   │   └── functional.py         # Functional agents implementation
+│   ├── messaging/                # Messaging module
+│   │   ├── __init__.py
+│   │   └── message.py            # Message definitions
+│   ├── orchestrator/             # Orchestrator module
+│   │   ├── __init__.py
+│   │   └── core.py               # Orchestrator implementation
+│   ├── visualization/            # Visualization module
+│   │   ├── __init__.py
+│   │   └── visualizer.py         # Visualizer implementation
+│   └── exporters/                # Exporters module
+│       ├── __init__.py
+│       └── api.py                # REST API exporter
+└── examples/                     # Usage examples
+    ├── simple_system.py          # Basic system example
+    └── api_server.py             # API server example
 ```
 
-## 📝 Ejemplos Incluidos
+## 📝 Included Examples
 
-Orchestra incluye ejemplos prácticos para ayudarte a comenzar:
+Orchestra includes practical examples to help you get started:
 
-### 1. Sistema Simple (`examples/simple_system.py`)
+### 1. Simple System (`examples/simple_system.py`)
 
-Este ejemplo crea un sistema básico con tres agentes: coordinador, procesador y validador. Demuestra cómo los mensajes fluyen a través del sistema y cómo los agentes procesan diferentes tipos de datos.
+This example creates a basic system with three agents: coordinator, processor, and validator. It demonstrates how messages flow through the system and how agents process different types of data.
 
 ```bash
 python examples/simple_system.py
 ```
 
-### 2. Servidor API (`examples/api_server.py`)
+### 2. API Server (`examples/api_server.py`)
 
-Este ejemplo muestra cómo exportar un sistema multi-agente como un servidor API REST con endpoints para gestionar agentes y enviar mensajes.
+This example shows how to export a multi-agent system as a REST API server with endpoints to manage agents and send messages.
 
 ```bash
 python examples/api_server.py
 ```
 
-## 💡 Casos de Uso
+## 💡 Use Cases
 
-Orchestra es ideal para diversos escenarios:
+Orchestra is ideal for various scenarios:
 
-- **Procesamiento de Datos Distribuido**: Dividir tareas complejas entre agentes especializados.
-- **Sistemas de Chatbots Avanzados**: Crear chatbots con múltiples "personalidades" o funciones.
-- **Simulaciones Multi-Agente**: Modelar interacciones complejas entre entidades.
-- **Flujos de Trabajo Automatizados**: Automatizar procesos de negocio con agentes especializados.
-- **Sistemas de Recomendación**: Implementar componentes especializados que colaboran para generar recomendaciones.
+* **Distributed Data Processing**: Split complex tasks among specialized agents.
+* **Advanced Chatbot Systems**: Create chatbots with multiple "personalities" or functions.
+* **Multi-Agent Simulations**: Model complex interactions between entities.
+* **Automated Workflows**: Automate business processes with specialized agents.
+* **Recommendation Systems**: Implement specialized components that collaborate to generate recommendations.
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-Las contribuciones son bienvenidas! Si quieres contribuir:
+Contributions are welcome! If you’d like to contribute:
 
-1. Haz fork del repositorio
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`)
-3. Realiza tus cambios
-4. Ejecuta las pruebas (`pytest`)
-5. Haz commit de tus cambios (`git commit -m 'Añadir nueva funcionalidad'`)
-6. Sube los cambios a tu fork (`git push origin feature/nueva-funcionalidad`)
-7. Abre un Pull Request
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/new-feature`)
+3. Make your changes
+4. Run the tests (`pytest`)
+5. Commit your changes (`git commit -m 'Add new feature'`)
+6. Push the changes to your fork (`git push origin feature/new-feature`)
+7. Open a Pull Request
 
-Por favor, asegúrate de seguir nuestro [Código de Conducta](https://github.com/holasoymalva/orchestra/blob/main/CODE_OF_CONDUCT.md).
+Please make sure to follow our [Code of Conduct](https://github.com/holasoymalva/orchestra/blob/main/CODE_OF_CONDUCT.md).
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está licenciado bajo la [MIT License](https://github.com/holasoymalva/orchestra/blob/main/LICENSE).
+This project is licensed under the [MIT License](https://github.com/holasoymalva/orchestra/blob/main/LICENSE).
 
-## 📞 Contacto
+## 📞 Contact
 
-Para preguntas, sugerencias o problemas, por favor:
+For questions, suggestions, or issues, please:
 
-- Abre un [issue](https://github.com/holasoymalva/orchestra/issues)
-- Contacta al mantenedor: [holasoymalva](https://github.com/holasoymalva)
+* Open an [issue](https://github.com/holasoymalva/orchestra/issues)
+* Contact the maintainer: [holasoymalva](https://github.com/holasoymalva)
 
 ---
 
-Construido con ❤️ por la comunidad. ¡Únete y contribuye!
+Built with ❤️ by the community. Join and contribute!
